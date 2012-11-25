@@ -133,15 +133,8 @@ for ic=1:maxdat
                     
                     TempQT=[QueTL(1:AssTID-1,:)
                             QueTL(AssTID+1:nqt,:)];
-
-                   
-                        
-                        NumberUnassignedT = length(TempQT); 
-                        %% render the number of unassigned tasks to fresh nodes
-                        
-            
-                       nqt=nqt-NumberUnassignedT;
-                       QueTL=TempQT;
+                    nqt=nqt-1;
+                    QueTL=TempQT;
                  end
              end
          end
@@ -244,9 +237,10 @@ for ic=1:maxdat
                         tnqt=tnqt-1; %% decrease the number of tempQ
                         
                         NumberUnassignedT = length(TempQT); 
-                        %% render the number of unassigned tasks to fresh tasks
+                        %% render the number of unassigned tasks 
+                        %% to fresh na
                         
-                        tnqt = tnqt - NumberUnassignedT; %%reset the number of tempQ
+                        tnqt = 0; 
                         
                         
                         QueTL=TempQT; %% update the Q with the tempQ
