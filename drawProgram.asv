@@ -1,0 +1,7 @@
+
+
+S = load('Peelnewr0.01m200dur5000p0.8q0.4.mat', 'MpP');
+
+myLambda = load('
+
+disp(S);
