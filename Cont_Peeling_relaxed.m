@@ -74,7 +74,7 @@ lamI=1;
  
  Randm=randperm(m); %%
  
- NumberUnassignedT = 0; %%initialize the number of fresh tasks left in 
+%% NumberUnassignedT = 0; %%initialize the number of fresh tasks left in 
  %% the last time interval
  
  %%% Indicate P/Q servers %%%
@@ -88,9 +88,9 @@ for ic=1:maxdat
 %           ic
          interval=exprnd(1/ar);
          intvl=interval;
-         
-         nnewt=1+NumberUnassignedT;
-              
+         %%nnewt = 1;
+         nnewt=1;
+        %% NumberUnassignedT = 0;     
          %% departure of processing tasks at servers        
          while(intvl>0)
              BusyS=find(SS~=0);
@@ -136,11 +136,11 @@ for ic=1:maxdat
 
                    
                         
-                        NumberUnassignedT = length(TempQT); 
+                       %% NumberUnassignedT = length(TempQT); 
                         %% render the number of unassigned tasks to fresh nodes
                         
             
-                       nqt=nqt-NumberUnassignedT;
+                       nqt=nqt-1;
                        QueTL=TempQT;
                  end
              end
@@ -185,7 +185,11 @@ for ic=1:maxdat
                    NewTL];   
                
         if(isempty(SI)==0) %% Some servers are idle
-            nIdleS=length(SI);
+            
+            %% send freshment to QueTL, nqt has been incredmented with 'nnewt'
+             QueTL=ceil(rand(nqt,3)*m);
+ 
+             nIdleS=length(SI);
             
             if(nqt<nIdleS) 
                 NassT=nqt;
@@ -243,10 +247,10 @@ for ic=1:maxdat
                         
                         tnqt=tnqt-1; %% decrease the number of tempQ
                         
-                        NumberUnassignedT = length(TempQT); 
+                    %%    NumberUnassignedT = length(TempQT); 
                         %% render the number of unassigned tasks to fresh tasks
                         
-                        tnqt = tnqt - NumberUnassignedT; %%reset the number of tempQ
+                     %%   tnqt = tnqt - 1; %%reset the number of tempQ
                         
                         
                         QueTL=TempQT; %% update the Q with the tempQ
