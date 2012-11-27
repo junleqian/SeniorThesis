@@ -163,6 +163,13 @@ for ic=1:maxdat
          tdMq=tdMq+fq*fq;         
          
         %% Assignment of server for new arrival
+        QueTL = zeros(nqt, 3);
+         for newarrial=1:nqt
+             trandp=randperm(m);
+            QueTL(newarrial,:)=trandp(1:3);
+         end
+        
+        
          NewTL=zeros(nnewt,3);
          
          for newarrial=1:nnewt
@@ -187,7 +194,7 @@ for ic=1:maxdat
         if(isempty(SI)==0) %% Some servers are idle
             
             %% send freshment to QueTL, nqt has been incredmented with 'nnewt'
-             QueTL=ceil(rand(nqt,3)*m);
+%%             QueTL=ceil(rand(nqt,3)*m);
  
              nIdleS=length(SI);
             
